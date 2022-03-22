@@ -1,22 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.elex.vip</id>
-    <title>Gridea</title>
-    <updated>2022-03-22T07:54:16.494Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://blog.elex.vip"/>
-    <link rel="self" href="https://blog.elex.vip/atom.xml"/>
-    <subtitle>To be or not to be, that&apos;s a question.</subtitle>
-    <logo>https://blog.elex.vip/images/avatar.png</logo>
-    <icon>https://blog.elex.vip/favicon.ico</icon>
-    <rights>All rights reserved 2022, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合]]></title>
-        <id>https://blog.elex.vip/post/docker-an-zhuang-jenkins-zi-dong-bu-shu-springboot-xiang-mu-ji-suo-yu-dao-de-wen-ti-ji-he/</id>
-        <link href="https://blog.elex.vip/post/docker-an-zhuang-jenkins-zi-dong-bu-shu-springboot-xiang-mu-ji-suo-yu-dao-de-wen-ti-ji-he/">
-        </link>
-        <updated>2022-03-22T07:50:05.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="docker安装jenkins场景">docker安装Jenkins场景：</h1>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合 | Gridea</title>
+<link rel="shortcut icon" href="https://blog.elex.vip/favicon.ico?v=1647935629810">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://blog.elex.vip/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合 | Gridea - Atom Feed" href="https://blog.elex.vip/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="docker安装Jenkins场景：
+
+安装了以下服务
+
+jdk1.8（非docker容器安装）
+maven3.6.3 （非docker容器安装）
+docker
+nginx（docker容器部署）
+mysql（docker容器部署）
+red..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://blog.elex.vip">
+  <img class="avatar" src="https://blog.elex.vip/images/avatar.png?v=1647935629810" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    To be or not to be, that's a question.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-03-22
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="docker安装jenkins场景">docker安装Jenkins场景：</h1>
 <font color=#999AAA >
 安装了以下服务
 <ul>
@@ -103,6 +184,74 @@
 <p>后期更新</p>
 <h1 id="问题">问题：</h1>
 <p>后期更新</p>
-]]></content>
-    </entry>
-</feed>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#docker%E5%AE%89%E8%A3%85jenkins%E5%9C%BA%E6%99%AF">docker安装Jenkins场景：</a></li>
+<li><a href="#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85jenkins">开始安装Jenkins：</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85gitgitlab%E6%8F%92%E4%BB%B6">安装Git，GitLab插件：</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98">问题：</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://blog.elex.vip" target="_blank">Elex</a>
+  <a class="rss" href="https://blog.elex.vip/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
