@@ -3311,6 +3311,33 @@ a {
   }
 }
 
+        .menubutton {
+          color: #74c0fc;
+        }
+
+        .menucontainer span::before,
+        .menucontainer span::after {
+          color:#74c0fc;
+          content: attr(data-text);
+          position: absolute;
+          top: -0.5em;
+          left: 0;
+          width: 100%;
+          transition: 0.3s ease-out;
+        }
+
+        .menubutton:visited{
+          color: #74c0fc;
+        }
+
+        .menutopbutton{
+          color: #74c0fc;
+        }
+
+        .menutopbutton:visited{
+          color: #74c0fc;
+        }
+      
         .navbar-inverse{
           background-color: rgba(143,168,171,0.8);
         }

@@ -2,23 +2,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="“你用过HashMap吗？” “什么是HashMap？你为什么用到它？”
+几乎每个人都会回答“是的”，然后回答HashMap的一些特性，譬如HashMap可以接受null键值和值，而Hashtable则不能；HashMap是非synchro..." />
+    <meta name="keywords" content="Java" />
+    <link rel="stylesheet" href="https://blog.elex.vip/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://blog.elex.vip/styles/main.css">
+    <!-- 代码渲染风格css -->
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
+    
+    <!-- 代码高亮插件 -->
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <!-- 代码复制插件 -->
+    <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
+    <!-- live2d插件 -->
+    <link rel="stylesheet" href="https://blog.elex.vip/media/css/live2d.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://blog.elex.vip/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://blog.elex.vip/media/css/live2d.css">
-    <meta name="description" content="To be or not to be, that's a question." />
-    <link rel="stylesheet" href="https://blog.elex.vip/styles/main.css">
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <title>Elex'Blog-说说</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <title>java面试题之HashMap常见面试题总结</title>
+
+    <!-- 大纲索引css调整 -->
+    
+    <style>
+        .markdownIt-TOC {
+            margin-left: 28%;
+            padding-left: 2px;
+            width: 80%;
+        }
+
+        .markdownIt-TOC li {
+            padding-left: 8%;
+        }
+    </style>
+    
 </head>
 
 <body>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="domainname" style="display:none">https://blog.elex.vip</div>
     <div id="content">
-        <div class="nav-large">
-            <div class="row">
-                <!--------------- pc端菜单栏👇 ---------------->
-                <div class="side"><head>
+        <div>
+            <!----------- 移动端导航栏👇 ----------------->
+            <div id="bar">
+                <style>
+  .navmobile {
+    z-index: 15;
+    max-height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .navbar {
+      max-width: 100vw;
+    }
+  }
+
+  @media screen and (max-width:1200px) and (min-width: 768px) {
+    @media (min-width: 768px) {
+      .navbar-nav {
+        float: right;
+        margin: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    .mbapspan {
+      padding: 0;
+    }
+  }
+</style>
+<div class="pjaxloading"  onclick="pjaxloadingClose()">
+  <div class="loadingbackground"></div>
+  <div id="loading">
+    <div class="loading">
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
+        aria-expanded="false" id="barbutton">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a data-pjax class="navbar-brand" style="color:white" href="https://blog.elex.vip">Elex&#39;Blog&nbsp;&nbsp;|</a>
+      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
+          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="barmenu">
+      <ul class="nav navbar-nav">
+        
+        
+        <li>
+          <a data-pjax href="/" style="color:white">
+            首页
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/archives" style="color:white">
+            归档
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/tags" style="color:white">
+            标签
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/post/about" style="color:white">
+            关于
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        <li><a data-pjax href="https://blog.elex.vip/friends" style="color:white">友链</a></li>
+
+        
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+  <script>
+    let btstate = false;
+    var bt = $("#barbutton");
+    var bm = $("#barmenu");
+    bt.click(function () {
+      dropdown();
+    })
+    function dropdown() {
+      console.log(btstate);
+      //下拉
+      if (btstate == false) {
+        bt.removeClass("collapsed");
+        bt.attr("aria-expanded", "true");
+        bm.attr("aria-expanded", "true")
+        bm.fadeIn(700);
+        btstate = true;
+      }
+      else {
+        bt.addClass("collapsed");
+        bt.attr("aria-expanded", "false");
+        bm.removeClass("in");
+        bm.hide();
+        bm.attr("aria-expanded", "false");
+        btstate = false;
+      }
+    }
+  </script> 
+            </div>
+            <!----------- 移动端导航栏👆 ----------------->
+
+            <!--------------- pc端菜单栏👇 ---------------->
+            <div class="side"><head>
     <link rel="stylesheet" href="https://blog.elex.vip/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://blog.elex.vip/styles/main.css">
     
@@ -873,185 +1038,167 @@ menulist.eq(i).show();
     }
 </script>
 <!----夜间模式👆--></div>
-                <!--------------- pc端菜单栏👆 ---------------->
+            <!--------------- pc端菜单栏👆 ---------------->
 
-                <!----------- 移动端导航栏👇 ----------------->
-                <div class="tbar"> <style>
-  .navmobile {
-    z-index: 15;
-    max-height: 40vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-
-  @media screen and (max-width: 1200px) {
-    .navbar {
-      max-width: 100vw;
-    }
-  }
-
-  @media screen and (max-width:1200px) and (min-width: 768px) {
-    @media (min-width: 768px) {
-      .navbar-nav {
-        float: right;
-        margin: 0;
-      }
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    .mbapspan {
-      padding: 0;
-    }
-  }
-</style>
-<div class="pjaxloading"  onclick="pjaxloadingClose()">
-  <div class="loadingbackground"></div>
-  <div id="loading">
-    <div class="loading">
-    </div>
-  </div>
-</div>
-<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
-        aria-expanded="false" id="barbutton">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a data-pjax class="navbar-brand" style="color:white" href="https://blog.elex.vip">Elex&#39;Blog&nbsp;&nbsp;|</a>
-      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
-          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="barmenu">
-      <ul class="nav navbar-nav">
-        
-        
-        <li>
-          <a data-pjax href="/" style="color:white">
-            首页
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/archives" style="color:white">
-            归档
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/tags" style="color:white">
-            标签
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/post/about" style="color:white">
-            关于
-          </a>
-        </li>
-        
-        
-        
-        
-          
-        <li><a data-pjax href="https://blog.elex.vip/friends" style="color:white">友链</a></li>
-
-        
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-  <script>
-    let btstate = false;
-    var bt = $("#barbutton");
-    var bm = $("#barmenu");
-    bt.click(function () {
-      dropdown();
-    })
-    function dropdown() {
-      console.log(btstate);
-      //下拉
-      if (btstate == false) {
-        bt.removeClass("collapsed");
-        bt.attr("aria-expanded", "true");
-        bm.attr("aria-expanded", "true")
-        bm.fadeIn(700);
-        btstate = true;
-      }
-      else {
-        bt.addClass("collapsed");
-        bt.attr("aria-expanded", "false");
-        bm.removeClass("in");
-        bm.hide();
-        bm.attr("aria-expanded", "false");
-        btstate = false;
-      }
-    }
-  </script> 
-                <!----------- 移动端导航栏👆 ----------------->
-                </div>
-
-                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
-                
-                    <div id="tab1" class="tab">
-                        <div class="bars">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="close"></div>
-                    </div>
-                <div class="col-md-1 col-lg-3"></div>
-                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7" style="z-index: 11;">
-                    <div class="mobilebar">
-                        <img src="" alt="" class="plbg">
-<script>
-    var bgchoice = "link";
-    if(bgchoice=='default')
-        var plbgurl = "/media/images/custom-mobileplbgimage.jpg"
-    else  
-        var plbgurl = "https://gitee.com/Elex_Eleven/pic-go/raw/master/images/custom-mobileplbgimage.jpg"
-    $(".plbg").attr("src",plbgurl);
-    $(".plbg").fadeIn(200);
-</script>
-                    </div>
-                    <div id="talks">
-    <div id="talkContainer">
-    </div>
-    <button id="getmorebt" type="button" onclick="add()">获取更多</button>
-</div>
-<!-- 弹窗 -->
-<div id="myModal" class="modal">
-    <img class="modal-content" id="img01">
-</div>
-                </div>
-                <div class="col-md-1 col-lg-2"></div>
-                <!-- ----------------左侧菜单栏html 👆-------------------------------------->
-                
-                <!--------------- 顶部菜单栏html👇--------->
-                
-                <!--------------- 顶部菜单栏html👆--------->
-            </div>
-            <!-- aplayer播放器加载👇 -->
+            <!-- ----------------左侧菜单栏html 👇-------------------------------------->
             
-                <head>
+            <div>
+                <div id="tab1" class="tab">
+                    <div class="bars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="close"></div>
+                </div>
+                <div class="col-md-1 col-lg-3"></div>
+                <!-- main标签，pjax渲染时加载以下内容👇 -->
+                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7" style="padding:0;">
+                    <div class="readingmode" onclick="readingmode()">阅</div>
+                    <link rel="stylesheet" href="https://blog.elex.vip/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow postpadding" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg">
+                <img src="https://gitee.com/Elex_Eleven/pic-go/raw/master/images/cb8521e33e11bbc0f94ce544954e556e.jpeg" class="postimage" style="cursor:auto">
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2022-03-23</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 8 min read</div>
+                <div class="posttag">
+                    
+                    <a data-pjax href="https://blog.elex.vip/tag/GiMI0Yaiw/" class="postlink">
+                        <i class="fa fa-tag"></i> Java
+                    </a>
+                    
+                </div>
+            </div>
+            
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2 id="ptitle">java面试题之HashMap常见面试题总结</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://blog.elex.vip/post/java-mian-shi-ti-zhi-hashmap-chang-jian-mian-shi-ti-zong-jie/</div>
+                <div id="rootaddr" style="display:none">https://blog.elex.vip</div>
+                
+            </div>
+            <div class="text ">
+                <h2 id="你用过hashmap吗-什么是hashmap你为什么用到它">“你用过HashMap吗？” “什么是HashMap？你为什么用到它？”</h2>
+<p>几乎每个人都会回答“是的”，然后回答HashMap的一些特性，譬如HashMap可以接受null键值和值，而Hashtable则不能；HashMap是非synchronized;HashMap很快；以及HashMap储存的是键值对等等。这显示出你已经用过HashMap，而且对它相当的熟悉。但是面试官来个急转直下，从此刻开始问出一些刁钻的问题，关于HashMap的更多基础的细节。面试官可能会问出下面的问题：</p>
+<h2 id="你知道hashmap的工作原理吗-你知道hashmap的get方法的工作原理吗">“你知道HashMap的工作原理吗？” “你知道HashMap的get()方法的工作原理吗？”</h2>
+<p>HashMap是基于hashing的原理，我们使用put(key, value)存储对象到HashMap中，使用get(key)从HashMap中获取对象。当我们给put()方法传递键和值时，我们先对键调用hashCode()方法，返回的hashCode用于找到bucket位置来储存Entry对象。”这里关键点在于指出，HashMap是在bucket中储存键对象和值对象，作为Map.Entry。这一点有助于理解获取对象的逻辑。如果你没有意识到这一点，或者错误的认为仅仅只在bucket中存储值的话，你将不会回答如何从HashMap中获取对象的逻辑。这个答案相当的正确，也显示出面试者确实知道hashing以及HashMap的工作原理。</p>
+<h2 id="当两个对象的hashcode相同会发生什么">“当两个对象的hashcode相同会发生什么？”</h2>
+<p>从这里开始，真正的困惑开始了，一些面试者会回答因为hashcode相同，所以两个对象是相等的，HashMap将会抛出异常，或者不会存储它们。然后面试官可能会提醒他们有equals()和hashCode()两个方法，并告诉他们两个对象就算hashcode相同，但是它们可能并不相等。一些面试者可能就此放弃，而另外一些还能继续挺进，他们回答“因为hashcode相同，所以它们的bucket位置相同，‘碰撞’会发生。因为HashMap使用链表存储对象，这个Entry(包含有键值对的Map.Entry对象)会存储在链表中。”这个答案非常的合理，虽然有很多种处理碰撞的方法，这种方法是最简单的，也正是HashMap的处理方法。但故事还没有完结，面试官会继续问：</p>
+<h2 id="如果两个键的hashcode相同你如何获取值对象">“如果两个键的hashcode相同，你如何获取值对象？”</h2>
+<p>面试者会回答：当我们调用get()方法，HashMap会使用键对象的hashcode找到bucket位置，然后获取值对象。面试官提醒他如果有两个值对象储存在同一个bucket，他给出答案:将会遍历链表直到找到值对象。面试官会问因为你并没有值对象去比较，你是如何确定确定找到值对象的？除非面试者直到HashMap在链表中存储的是键值对，否则他们不可能回答出这一题。其中一些记得这个重要知识点的面试者会说，找到bucket位置之后，会调用keys.equals()方法去找到链表中正确的节点，最终找到要找的值对象。完美的答案！许多情况下，面试者会在这个环节中出错，因为他们混淆了hashCode()和equals()方法。因为在此之前hashCode()屡屡出现，而equals()方法仅仅在获取值对象的时候才出现。一些优秀的开发者会指出使用不可变的、声明作final的对象，并且采用合适的equals()和hashCode()方法的话，将会减少碰撞的发生，提高效率。不可变性使得能够缓存不同键的hashcode，这将提高整个获取对象的速度，使用String，Interger这样的wrapper类作为键是非常好的选择。如果你认为到这里已经完结了，那么听到下面这个问题的时候，你会大吃一惊。</p>
+<h2 id="如果hashmap的大小超过了负载因子load-factor定义的容量怎么办">“如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？”</h2>
+<p>除非你真正知道HashMap的工作原理，否则你将回答不出这道题。默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，和其它集合类(如ArrayList等)一样，将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，因为它调用hash方法找到新的bucket位置。如果你能够回答这道问题，下面的问题来了：</p>
+<h2 id="你了解重新调整hashmap大小存在什么问题吗">“你了解重新调整HashMap大小存在什么问题吗？”</h2>
+<p>你可能回答不上来，这时面试官会提醒你当多线程的情况下，可能产生条件竞争(race condition)。当重新调整HashMap大小的时候，确实存在条件竞争，因为如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。在调整大小的过程中，存储在链表中的元素的次序会反过来，因为移动到新的bucket位置的时候，HashMap并不会将元素放在链表的尾部，而是放在头部，这是为了避免尾部遍历(tail traversing)。如果条件竞争发生了，那么就死循环了。这个时候，你可以质问面试官，为什么这么奇怪，要在多线程的环境下使用HashMap呢？：）</p>
+<h2 id="为什么string-interger这样的wrapper类适合作为键">“为什么String, Interger这样的wrapper类适合作为键？”</h2>
+<p>String, Interger这样的wrapper类作为HashMap的键是再适合不过了，而且String最为常用。因为String是不可变的，也是final的，而且已经重写了equals()和hashCode()方法了。其他的wrapper类也有这个特点。不可变性是必要的，因为为了要计算hashCode()，就要防止键值改变，如果键值在放入时和获取时返回不同的hashcode的话，那么就不能从HashMap中找到你想要的对象。不可变性还有其他的优点如线程安全。如果你可以仅仅通过将某个field声明成final就能保证hashCode是不变的，那么请这么做吧。因为获取对象的时候要用到equals()和hashCode()方法，那么键对象正确的重写这两个方法是非常重要的。如果两个不相等的对象返回不同的hashcode的话，那么碰撞的几率就会小些，这样就能提高HashMap的性能。 “我们可以使用自定义的对象作为键吗？ ”这是前一个问题的延伸。当然你可能使用任何对象作为键，只要它遵守了equals()和hashCode()方法的定义规则，并且当对象插入到Map中之后将不会再改变了。如果这个自定义对象时不可变的，那么它已经满足了作为键的条件，因为当它创建之后就已经不能改变了。</p>
+<h2 id="我们可以使用cocurrenthashmap来代替hashtable吗">“我们可以使用CocurrentHashMap来代替Hashtable吗？”</h2>
+<p>这是另外一个很热门的面试题，因为ConcurrentHashMap越来越多人用了。我们知道Hashtable是synchronized的，但是ConcurrentHashMap同步性能更好，因为它仅仅根据同步级别对map的一部分进行上锁。ConcurrentHashMap当然可以代替HashTable，但是HashTable提供更强的线程安全性。</p>
+<p>这些问题设计哪些知识点：</p>
+<p>hashing的概念<br>
+HashMap中解决碰撞的方法<br>
+equals()和hashCode()的应用，以及它们在HashMap中的重要性<br>
+不可变对象的好处<br>
+HashMap多线程的条件竞争<br>
+重新调整HashMap的大小</p>
+<p><strong>总结</strong><br>
+HashMap的工作原理HashMap基于hashing原理，我们通过put()和get()方法储存和获取对象。当我们将键值对传递给put()方法时，它调用键对象的hashCode()方法来计算hashcode，让后找到bucket位置来储存值对象。当获取对象时，通过键对象的equals()方法找到正确的键值对，然后返回值对象。HashMap使用链表来解决碰撞问题，当发生碰撞了，对象将会储存在链表的下一个节点中。 HashMap在每个链表节点中储存键值对对象。当两个不同的键对象的hashcode相同时会发生什么？ 它们会储存在同一个bucket位置的链表中。键对象的equals()方法用来找到键值对。因为HashMap的好处非常多，在电子商务的应用中使用HashMap作为缓存。因为金融领域非常多的运用Java，也出于性能的考虑，我们会经常用到HashMap和ConcurrentHashMap。你可以查看更多的关于HashMap的文章:</p>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong></li>
+            <li><strong>原文链接：</strong>https://blog.elex.vip/post/java-mian-shi-ti-zhi-hashmap-chang-jian-mian-shi-ti-zong-jie/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        
+        <div id="otherpost">
+            
+            
+            <a data-pjax class="next-post-pc" href="https://blog.elex.vip/post/bigdecimal-postman-fan-hui-zheng-chang-jing-du-qian-duan-jie-shou-bu-zheng-chang-qian-hou-duan-jiao-hu-diu-shi-jing-du/"  style="color: black;">
+                <div id="npcontainer">
+                    
+                    <img src="https://gitee.com/Elex_Eleven/pic-go/raw/master/images/41933a5887806b3479a690748e2a7650.jpeg" style="width: 100%;" class="opimg">
+                    
+                    <h4 class="optitle">BigDecimal Postman 返回正常精度前端接收不正常（前后端交互丢失精度）</h4>
+                </div>
+            </a>
+            <div class="next-post">
+                下一篇 <a  data-pjax href="https://blog.elex.vip/post/bigdecimal-postman-fan-hui-zheng-chang-jing-du-qian-duan-jie-shou-bu-zheng-chang-qian-hou-duan-jiao-hu-diu-shi-jing-du/">BigDecimal Postman 返回正常精度前端接收不正常（前后端交互丢失精度）</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- 弹窗 -->
+    <div id="myModal" class="modal">
+        <img class="modal-content" id="img01">
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+                    <div class="toc-container">
+                        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BD%A0%E7%94%A8%E8%BF%87hashmap%E5%90%97-%E4%BB%80%E4%B9%88%E6%98%AFhashmap%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E5%88%B0%E5%AE%83">“你用过HashMap吗？” “什么是HashMap？你为什么用到它？”</a></li>
+<li><a href="#%E4%BD%A0%E7%9F%A5%E9%81%93hashmap%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%90%97-%E4%BD%A0%E7%9F%A5%E9%81%93hashmap%E7%9A%84get%E6%96%B9%E6%B3%95%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%90%97">“你知道HashMap的工作原理吗？” “你知道HashMap的get()方法的工作原理吗？”</a></li>
+<li><a href="#%E5%BD%93%E4%B8%A4%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84hashcode%E7%9B%B8%E5%90%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88">“当两个对象的hashcode相同会发生什么？”</a></li>
+<li><a href="#%E5%A6%82%E6%9E%9C%E4%B8%A4%E4%B8%AA%E9%94%AE%E7%9A%84hashcode%E7%9B%B8%E5%90%8C%E4%BD%A0%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%80%BC%E5%AF%B9%E8%B1%A1">“如果两个键的hashcode相同，你如何获取值对象？”</a></li>
+<li><a href="#%E5%A6%82%E6%9E%9Chashmap%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%B6%85%E8%BF%87%E4%BA%86%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90load-factor%E5%AE%9A%E4%B9%89%E7%9A%84%E5%AE%B9%E9%87%8F%E6%80%8E%E4%B9%88%E5%8A%9E">“如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？”</a></li>
+<li><a href="#%E4%BD%A0%E4%BA%86%E8%A7%A3%E9%87%8D%E6%96%B0%E8%B0%83%E6%95%B4hashmap%E5%A4%A7%E5%B0%8F%E5%AD%98%E5%9C%A8%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E5%90%97">“你了解重新调整HashMap大小存在什么问题吗？”</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88string-interger%E8%BF%99%E6%A0%B7%E7%9A%84wrapper%E7%B1%BB%E9%80%82%E5%90%88%E4%BD%9C%E4%B8%BA%E9%94%AE">“为什么String, Interger这样的wrapper类适合作为键？”</a></li>
+<li><a href="#%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8cocurrenthashmap%E6%9D%A5%E4%BB%A3%E6%9B%BFhashtable%E5%90%97">“我们可以使用CocurrentHashMap来代替Hashtable吗？”</a></li>
+</ul>
+</li>
+</ul>
+
+                    </div>
+                    <div class="tog">
+                        <div class="toggleContainer">
+                            <div class="toggle">
+                                <i class="fas fa-angle-double-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!---------------------------- 评论系统👇 ------------------------->
+                    <div id="comment" class="comment">
+                        <div class="commentcontainer">
+                            
+                                
+                            
+                        </div>
+                    </div>
+                    <!---------------------------- 评论系统👆 ------------------------->
+                </div>
+                <!-- main标签，pjax渲染时加载以上内容👆 -->
+                <div class="col-md-1 col-lg-2"></div>
+                <div id="bg">
+                </div>
+            </div>
+            <!-- ----------------左侧菜单栏html 👆-------------------------------------->
+            
+        </div>
+        <!-- aplayer播放器加载👇 -->
+            
+            <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 </head>
 
@@ -1114,39 +1261,70 @@ menulist.eq(i).show();
     }
 </script>
             
-            <!-- aplayer播放器加载👆 -->
-        </div>
-        <div id="bg">
-        </div>
-        <!-- 背景图加载方式👇 -->
-        <div id="bgchoice" style="display: none">link
-            </div>
-            
-            <div id="bgurl" style="display:none">https://gitee.com/Elex_Eleven/pic-go/raw/master/images/custom-bgimage.png</div>
-               
-        <!-- 背景图加载方式👆 -->
+        <!-- aplayer播放器加载👆 -->
     </div>
-    
-    <div id="landlord">
-        <div class="message" style="opacity:0"></div>
-        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-    </div>
-    <div id="domainname" style="display:none">https://blog.elex.vip</div>
+    <!-- 背景图加载方式👇 -->
+    <div id="bgchoice" style="display: none">link
+                </div>
+                
+                <div id="bgurl" style="display:none">https://gitee.com/Elex_Eleven/pic-go/raw/master/images/custom-bgimage.png</div>
+                
+    <!-- 背景图加载方式👆 -->
 </body>
 
-<!-------------------- live2d功能👇 --------------------------->
+<script>
+    //初始化
+    //更换twikoo头像
+    setTimeout(replaceAvatar,1000);
+    setTimeout(replaceAvatar,2000);
+    setTimeout(replaceAvatar,8000);
+    // --------为每张图片添加懒加载（lazyload）标签-->懒加载功能 👇------------
+    lazyload();
+    //为文章内所有代码块添加代码复制功能 👇
+    codeinit();
+    // ------代码高亮显示功能-------------
+    hljs.initHighlightingOnLoad();
+    if (shareChoice)
+        shareInit();
+    if (donateChoice)
+        donateInit();
+</script>
 
-    <script type="text/javascript">
-        var message_Path = '/live2d/'
-        var home_Path = document.getElementById("domainname").innerHTML+"/"; //此处修改为你的域名，必须带斜杠
-    </script>
-    <script type="text/javascript" src="https://blog.elex.vip/media/js/live2d.js"></script>
-    <script type="text/javascript" src="https://blog.elex.vip/media/live2d/js/message.js"></script>
-    <script type="text/javascript">
-            loadlive2d("live2d", "https://blog.elex.vip/media/live2d/assets/tororo.model.json");
-    </script>
+<!------------------ 加载live2d模型功能（看板娘）👇 ---------------->
 
-<!-------------------- live2d功能👆 --------------------------->
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://blog.elex.vip/media/js/live2d.js"></script>
+<script type="text/javascript" src="https://blog.elex.vip/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://blog.elex.vip/media/live2d/assets/tororo.model.json");
+</script>
+
+<!------------------ 加载live2d模型功能（看板娘）👆 ---------------->
+
+
+<!----------------------- 返回顶部按钮功能👇 --------------------->
+<script>
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
+</script>
+<!----------------------- 返回顶部按钮功能👆 --------------------->
+
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
@@ -1168,16 +1346,28 @@ menulist.eq(i).show();
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 
 
-        <script src="https://blog.elex.vip/media/js/index.js"></script>
 
 
-<!--------------------------- 说说功能👇------------------------- -->
+<script src="https://blog.elex.vip/media/js/index.js"></script>
+
+
 <script>
-
-    window.onload = function(){
+    //加载后的事件同步（阅读量、移动端评论等
+    window.onload = function () {
+    //代码块高亮渲染
+    document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+    });
+        getHotnum();
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);   //插件只会寻找一个分享标签渲染，所以需要手动添加到移动端
         aplayerbtnInit();
-        get();
-        add();
+        $(".hljs").css({
+            "padding": "20px"
+        })
     }
 </script>
-<!--------------------------- 说说功能👆------------------------- -->
+
+<!-- <script src="https://blog.elex.vip/media/js/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.13.0/dist/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-live-query-min.js"></script> -->
