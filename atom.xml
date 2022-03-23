@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.elex.vip</id>
     <title>Elex&apos;Blog</title>
-    <updated>2022-03-23T09:04:35.005Z</updated>
+    <updated>2022-03-23T09:08:12.793Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.elex.vip"/>
     <link rel="self" href="https://blog.elex.vip/atom.xml"/>
-    <subtitle>To be or not to be, that&apos;s a question.</subtitle>
+    <subtitle>To be or not to be, that&amp;acute;s a question.</subtitle>
     <logo>https://blog.elex.vip/images/avatar.png</logo>
     <icon>https://blog.elex.vip/favicon.ico</icon>
     <rights>All rights reserved 2022, Elex&apos;Blog</rights>
