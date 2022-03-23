@@ -87,7 +87,7 @@
                         src='https://blog.elex.vip/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         </div>
         <div class="avatar-border">
-            <img src="https://blog.elex.vip/images/avatar.png?v=1647948720413" class="avatar">
+            <img src="https://blog.elex.vip/images/avatar.png?v=1648004143887" class="avatar">
         </div>
         <div class="sitename">Elex&#39;Blog</div>
         <span class="description" data-text='["To be or not to be, that's a question."]'>&nbsp;</span>
@@ -985,6 +985,15 @@ menulist.eq(i).show();
     <div id="friendscontainermobile">
         
         
+        <div class="friend-box" onclick="window.location.href= 'http://wuc0714.top';return false">
+            <img class="friend-avatar" src="http://wuc0714.top/media/images/custom-headerLogo.png">
+            <div class="flink-info">
+                <a href="http://wuc0714.top" class="title" target="_blank">wuc0714</a>
+                <div style="margin-top:10px"></div>
+                <p>wuc0714</p>
+            </div>
+        </div>
+        
         
     </div>
 
@@ -999,9 +1008,17 @@ menulist.eq(i).show();
 
     <div id="friendscontainer">
         <div id="friendsrule">
-            <p>暂无提示</p><p>暂无提示</p>
+            <p>🎈欢迎添加友链</p><p>🎈希望您的站点保持活跃，文章内容尽量保持原创</p><p>🎈希望尽量互访交流~</p><p>ps:如果您发现自己的站点长时间未出现在友人帐，可选择删除本站在贵站的友链链接~</p>
         </div>
         
+        
+        <div class="background" onclick="window.open('http://wuc0714.top');return false">
+            <div class="infoForm" title="wuc0714">
+                <img class="favatar" src="http://wuc0714.top/media/images/custom-headerLogo.png">
+                <h2>wuc0714</h2>
+                <h3>wuc0714</h3>
+            </div>
+        </div>
         
         
     </div>
@@ -1023,6 +1040,69 @@ menulist.eq(i).show();
             
         <!------------------ 顶部菜单栏html👆--------->
         
+        <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</head>
+
+<body>
+    <div class="miniMode">
+        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default" muted="muted">
+        </meting-js>
+    </div>
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    function aplayerInit() {
+        var aplayerid = "464594636";
+        var aplayerserver = "netease";
+        var aplayerorder = "default";
+        var aplayerautoplay = "false";
+        var aplayer = $("#myaplayer");
+        aplayer.attr("server", aplayerserver);
+        aplayer.attr("id", aplayerid);
+        aplayer.attr("order", aplayerorder);
+        if (aplayerautoplay == "true")
+            aplayer.attr("autoplay", "true");
+    }
+    aplayerInit();
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/Aplayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<script>
+    function aplayerbtnInit() {
+        var player = document.querySelectorAll('meting-js')[0].aplayer;
+        if(player==undefined)return false;
+        player.lrc.hide();
+        var mbabtn = $("#mbaplayer");
+        if (player.paused == false) {
+            mbabtn.removeClass("fa-play-circle-o");
+            mbabtn.addClass("fa-pause-circle");
+        } else {
+            mbabtn.addClass("fa-play-circle-o");
+            mbabtn.removeClass("fa-pause-circle");
+        }
+    }
+
+    function aplayerPlay() {
+        var player = document.querySelectorAll('meting-js')[0].aplayer;
+        var mbabtn = $("#mbaplayer");
+        if (player.paused == true) {
+            player.play();
+            mbabtn.removeClass("fa-play-circle-o");
+            mbabtn.addClass("fa-pause-circle");
+        } else {
+            player.pause();
+            mbabtn.addClass("fa-play-circle-o");
+            mbabtn.removeClass("fa-pause-circle");
+        }
+    }
+</script>
+        
 
     </div>
     
@@ -1033,9 +1113,9 @@ menulist.eq(i).show();
             </div>
         </div>
     </div>
-    <div id="bgchoice" style="display: none">default</div>
+    <div id="bgchoice" style="display: none">link</div>
     
-    <div id="bgurl" style="display:none">/media/images/custom-bgimage.png</div>
+    <div id="bgurl" style="display:none">https://gitee.com/Elex_Eleven/pic-go/raw/master/images/custom-bgimage.png</div>
     
     </div>
     <div id="landlord">

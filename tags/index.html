@@ -89,7 +89,7 @@
                         src='https://blog.elex.vip/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         </div>
         <div class="avatar-border">
-            <img src="https://blog.elex.vip/images/avatar.png?v=1647948720413" class="avatar">
+            <img src="https://blog.elex.vip/images/avatar.png?v=1648004143887" class="avatar">
         </div>
         <div class="sitename">Elex&#39;Blog</div>
         <span class="description" data-text='["To be or not to be, that's a question."]'>&nbsp;</span>
@@ -987,11 +987,11 @@ menulist.eq(i).show();
                         <div class="mobilebar">
                             <img src="" alt="" class="plbg">
 <script>
-    var bgchoice = "default";
+    var bgchoice = "link";
     if(bgchoice=='default')
         var plbgurl = "/media/images/custom-mobileplbgimage.jpg"
     else  
-        var plbgurl = ""
+        var plbgurl = "https://gitee.com/Elex_Eleven/pic-go/raw/master/images/custom-mobileplbgimage.jpg"
     $(".plbg").attr("src",plbgurl);
     $(".plbg").fadeIn(200);
 </script>
@@ -1004,8 +1004,8 @@ menulist.eq(i).show();
                         </script>
                         <div class="tagsbackgroundleft"></div>
                         
-                            <img class="tagsimg" src="/media/images/custom-tagimage.png" alt="">
-                            
+                            <img class="tagsimg" src="https://gitee.com/Elex_Eleven/pic-go/raw/master/images/custom-tagimage.png" alt="">
+                        
                         <div class="tags-container">
                         
                             <a data-pjax class="tag" href="https://blog.elex.vip/tag/2X0VTsV19/"># Docker</a>
@@ -1025,14 +1025,77 @@ menulist.eq(i).show();
                 <div class="col-xs-6 col-sm-3"></div>
             </div>
             
+                        <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</head>
+
+<body>
+    <div class="miniMode">
+        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default" muted="muted">
+        </meting-js>
+    </div>
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    function aplayerInit() {
+        var aplayerid = "464594636";
+        var aplayerserver = "netease";
+        var aplayerorder = "default";
+        var aplayerautoplay = "false";
+        var aplayer = $("#myaplayer");
+        aplayer.attr("server", aplayerserver);
+        aplayer.attr("id", aplayerid);
+        aplayer.attr("order", aplayerorder);
+        if (aplayerautoplay == "true")
+            aplayer.attr("autoplay", "true");
+    }
+    aplayerInit();
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/Aplayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<script>
+    function aplayerbtnInit() {
+        var player = document.querySelectorAll('meting-js')[0].aplayer;
+        if(player==undefined)return false;
+        player.lrc.hide();
+        var mbabtn = $("#mbaplayer");
+        if (player.paused == false) {
+            mbabtn.removeClass("fa-play-circle-o");
+            mbabtn.addClass("fa-pause-circle");
+        } else {
+            mbabtn.addClass("fa-play-circle-o");
+            mbabtn.removeClass("fa-pause-circle");
+        }
+    }
+
+    function aplayerPlay() {
+        var player = document.querySelectorAll('meting-js')[0].aplayer;
+        var mbabtn = $("#mbaplayer");
+        if (player.paused == true) {
+            player.play();
+            mbabtn.removeClass("fa-play-circle-o");
+            mbabtn.addClass("fa-pause-circle");
+        } else {
+            player.pause();
+            mbabtn.addClass("fa-play-circle-o");
+            mbabtn.removeClass("fa-pause-circle");
+        }
+    }
+</script>
+                        
         </div></div>
         <div id="bg">
         </div>
         <!-- 背景图加载方式👇 -->
-        <div id="bgchoice" style="display: none">default
+        <div id="bgchoice" style="display: none">link
                     </div>
                     
-                    <div id="bgurl" style="display:none">/media/images/custom-bgimage.png</div>
+                    <div id="bgurl" style="display:none">https://gitee.com/Elex_Eleven/pic-go/raw/master/images/custom-bgimage.png</div>
                        
         </div>
         <!-- 背景图加载方式👆 -->
@@ -1070,7 +1133,7 @@ menulist.eq(i).show();
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
-    var bgchoice = "default"
+    var bgchoice = "link"
     var bg = $('#bg');
     var bgurl = document.getElementById("bgurl").innerHTML;
     if (bgchoice == 'default')
