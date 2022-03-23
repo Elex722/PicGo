@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.elex.vip</id>
     <title>Elex&apos;Blog</title>
-    <updated>2022-03-23T09:16:27.139Z</updated>
+    <updated>2022-03-23T09:27:02.714Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.elex.vip"/>
     <link rel="self" href="https://blog.elex.vip/atom.xml"/>
@@ -69,10 +69,10 @@ HashMap的工作原理HashMap基于hashing原理，我们通过put()和get()方�
 <h2 id="例如">例如</h2>
 <p>该字段的值为  “ 12345671234567.12345”，到前端就变成了 “12345671234567.123”，前端要求保留所有小数。</p>
 <h2 id="解决方案">解决方案</h2>
-<p>在需要转化的字段上添加   @JsonFormat(shape = JsonFormat.Shape.STRING)  注解<br>
+<p>在需要转化的字段上添加   <code>@JsonFormat(shape = JsonFormat.Shape.STRING)</code> 注解<br>
 <img src="https://img-blog.csdnimg.cn/20210330112137151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MzIyMDY1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"></p>
 <h2 id="注解解释">注解解释</h2>
-<p>@JsonFormat 用来表示json序列化的一种格式或者类型，shap表示序列化后的一种类型</p>
+<p><code>@JsonFormat</code> 用来表示json序列化的一种格式或者类型，shap表示序列化后的一种类型</p>
 ]]></content>
     </entry>
     <entry>
