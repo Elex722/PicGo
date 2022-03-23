@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.elex.vip</id>
     <title>Elex&apos;Blog</title>
-    <updated>2022-03-23T07:38:22.721Z</updated>
+    <updated>2022-03-23T07:49:37.024Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.elex.vip"/>
     <link rel="self" href="https://blog.elex.vip/atom.xml"/>
@@ -211,11 +211,12 @@ ORDER BY ds.LAST_COMMIT_DATE
         <updated>2022-03-23T03:27:02.000Z</updated>
         <content type="html"><![CDATA[<p><ul class="markdownIt-TOC">
 <li><a href="#%E9%97%AE%E9%A2%98%E7%94%B1%E6%9D%A5">问题由来</a></li>
-<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a><br>
-*<br>
-*<br>
-* <a href="#lombok%E4%B8%BB%E8%A6%81%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3%E6%9C%89">Lombok主要常用的注解有：</a><br>
-* <a href="#%E8%AF%B4%E6%98%8E">说明</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a>
+<ul>
+<li><a href="#lombok%E4%B8%BB%E8%A6%81%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3%E6%9C%89">Lombok主要常用的注解有：</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E">说明</a></li>
+</ul>
+</li>
 </ul>
 (一个对象中有很多属性，假如有个属性不想在日志中打印，其他属性都打印)</p>
 <h1 id="问题由来">问题由来</h1>
@@ -233,9 +234,9 @@ ORDER BY ds.LAST_COMMIT_DATE
 <p><mark>@ToString(of={&quot;column1&quot;,&quot;column2&quot;})</mark></p>
 <p>意义：只生成包含多个column列所对应的元素的参数的toString方法，其中间用英文状态下的逗号进行分割，即在生成toString方法时只包含多个column参数；</p>
 <p>下面继续普及下lombok所有注解的说明，顺带巩固下自己的记忆</p>
-<h4 id="lombok主要常用的注解有">Lombok主要常用的注解有：</h4>
+<h2 id="lombok主要常用的注解有">Lombok主要常用的注解有：</h2>
 <p>@Data,@getter,@setter,@NoArgsConstructor,@AllArgsConstructor,@ToString,@EqualsAndHashCode,@Slf4j,@Log4j。我们一个一个来看：</p>
-<h4 id="说明">说明</h4>
+<h2 id="说明">说明</h2>
 <table>
 <thead>
 <tr>
