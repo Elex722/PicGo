@@ -262,7 +262,7 @@ red..." />
                         src='https://blog.elex.vip/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         </div>
         <div class="avatar-border">
-            <img src="https://blog.elex.vip/images/avatar.png?v=1648014077691" class="avatar">
+            <img src="https://blog.elex.vip/images/avatar.png?v=1648019161234" class="avatar">
         </div>
         <div class="sitename">Elex&#39;Blog</div>
         <span class="description" data-text='["To be or not to be, that's a question."]'>&nbsp;</span>
@@ -776,13 +776,13 @@ red..." />
                 shareInit();
             if (donateChoice)
                 donateInit();
-            if ("default" == "default"&&!commentsHide) {
+            if ("twikoo" == "default"&&!commentsHide) {
                 $("#comment").hide()
                 commentsHide = true
             }
             lazyload();
             codeinit();
-            if ("default" == "twikoo") {
+            if ("twikoo" == "twikoo") {
                 //twikoo头像更换
                 setTimeout(replaceAvatar, 3000);
                 setTimeout(replaceAvatar, 8000); //部分博主站点速度加载过慢，再添加一个延迟
@@ -1252,6 +1252,35 @@ menulist.eq(i).show();
                     <div id="comment" class="comment">
                         <div class="commentcontainer">
                             
+                                
+                                    <!-- 文章热度功能和评论整合 -->
+<style>
+  .twikoo p {text-align: left;}
+</style>
+<body>
+<div id="tcomment"></div>
+</body>
+<script>
+twikoo.init({
+  envId: 'twikoo-swnz.vercel.app',
+  el: '#tcomment',
+  // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数
+  // path: 'window.location.pathname', // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+})
+</script>
+
+<script>
+  var appid = '';
+  var appkey = '';
+  if(typeof(AVinit)=="undefined"){
+    AV.init({
+      appId: appid,
+      appKey: appkey
+  });
+  AVinit = true;
+}
+</script>
+                                    <div class="clear"></div>
                                 
                             
                         </div>
