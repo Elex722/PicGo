@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.elex.vip</id>
     <title>Elex&apos;Blog</title>
-    <updated>2022-03-23T09:10:06.009Z</updated>
+    <updated>2022-03-23T09:13:07.690Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.elex.vip"/>
     <link rel="self" href="https://blog.elex.vip/atom.xml"/>
@@ -10,24 +10,6 @@
     <logo>https://blog.elex.vip/images/avatar.png</logo>
     <icon>https://blog.elex.vip/favicon.ico</icon>
     <rights>All rights reserved 2022, Elex&apos;Blog</rights>
-    <entry>
-        <title type="html"><![CDATA[奇奇怪怪的言语]]></title>
-        <id>https://blog.elex.vip/post/qi-qi-guai-guai-de-yan-yu/</id>
-        <link href="https://blog.elex.vip/post/qi-qi-guai-guai-de-yan-yu/">
-        </link>
-        <updated>2022-03-23T08:42:40.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="相遇即缘相识即份">相遇即缘，相识即份</h1>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="100" src="https://music.163.com/outchain/player?type=2&amp;id=29723022&amp;auto=1&amp;height=100"></iframe>
-<h1 id="关于博主">😿关于博主</h1>
-<p>博主过于懒惰未写关于</p>
-<h1 id="其他">👻其他</h1>
-<p>旅游爱好者<br>
-有一个男生都有的机车梦</p>
-<h1 id="关于博客">👾关于博客</h1>
-<p>博客使用Gridea工具搭建，主题为fog。<br>
-虽然现在都是作为笔记记录平台使用，但是日后也想在博客记录个人生活感悟等=&gt;作为日后回忆</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[java面试题之HashMap常见面试题总结]]></title>
         <id>https://blog.elex.vip/post/java-mian-shi-ti-zhi-hashmap-chang-jian-mian-shi-ti-zong-jie/</id>
