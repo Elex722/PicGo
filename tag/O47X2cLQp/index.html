@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://blog.elex.vip/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://blog.elex.vip/media/css/live2d.css">
-    <link rel="stylesheet" href="https://blog.elex.vip/styles/main.css">
-    <script src="https://blog.elex.vip/media/js/valine.min.js"></script>
-    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-    <meta name="description" content="To be or not to be, that&acute;s a question." />
-    <meta http-equiv="x-pjax-version" content="v123">
-    <title>Elex'Blog</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://blog.elex.vip/media/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://blog.elex.vip/media/css/live2d.css">
+<link rel="stylesheet" href="https://blog.elex.vip/styles/main.css">
+<link rel="stylesheet" href="https://blog.elex.vip/media/css/font-awesome.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<title>Elex'Blog</title>
 
 
 <body>
+
     <div id="content">
         <div class="nav-large">
             <div class="row">
-                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
-                
                 <!--------------- pc端菜单栏👇 ---------------->
                 <div class="side"><head>
     <link rel="stylesheet" href="https://blog.elex.vip/media/css/bootstrap.min.css">
@@ -890,17 +885,9 @@ menulist.eq(i).show();
 </script>
 <!----夜间模式👆--></div>
                 <!--------------- pc端菜单栏👆 ---------------->
-                <div id="tab1" class="tab">
-                    <div class="bars">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="close"></div>
-                </div>
-                <div class="col-md-1 col-lg-3"></div>
+
                 <!----------- 移动端导航栏👇 ----------------->
-                <div class="mobilebar"><style>
+                <div class="tbar"> <style>
   .navmobile {
     z-index: 15;
     max-height: 40vh;
@@ -1028,104 +1015,23 @@ menulist.eq(i).show();
         btstate = false;
       }
     }
-  </script> 
+  </script> </div>
                 <!----------- 移动端导航栏👆 ----------------->
-                </div>
-                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
-                    <!-- 移动端 -->
-                    <div class="mobilebar">
-                        <!-- 移动端欢迎页 -->
-<div class="welcome">
-    <div class="avatar-border">
-        <img src="https://blog.elex.vip/images/avatar.png?v=1655712546090" class="avatar">
-    </div>
-    <span class="mobiledescribtion"></span>
-</div>
 
-
-    <div id="mobilebgurl" style="display:none">https://github.com/Elex722/PicGo/blob/master/images/custom-mobilebgimage.jpg?raw=true</div>
-
-<script>
-    var welcome = $('.welcome');
-    var bgurl = document.getElementById("mobilebgurl").innerHTML;
-    for (var i = 0; i < 3; i++)
-        bgurl = bgurl.replace("\\", "/");
-    welcome.css("background", "url('" + bgurl + "')");
-    var mobiledes = document.querySelector(".mobiledescribtion");
-    var text = "To be or not to be, that&acute;s a question.";
-    // 当前显示第几个字
-    var mobilecharIndex = 1;
-    // 每个字显示间隔默认是500毫秒
-    var mobiledelta = 500;
-
-    // 记录动画执行开始时间
-    var mobilestart = null;
-    // 是否为删除动画
-    var mobileisDeleting = false;
-
-    // 动画回调函数
-    function mobileLoadDes(time) {
-        window.requestAnimationFrame(mobileLoadDes);
-        // 初始化开始时间
-        if (!mobilestart) start = time;
-        // 获取时间间隔
-        var mobileprogress = time - mobilestart;
-        // 每隔一定的时间，打印出一个新的字符
-        if (mobileprogress > mobiledelta) {
-            // 如果是打字效果
-            if (!mobileisDeleting) {
-                // 给展示文字的span新增一个字符，使用innerHTML来替换，charIndex自增1，然后返回新的字符串子串
-                mobiledes.innerHTML = "&nbsp;" + text.slice(
-                    0,
-                    ++mobilecharIndex
-                );
-                mobiledelta = 500 - Math.random() * 400;
-            } else {
-                // 如果是删除效果，则把文字一个一个减掉
-                mobiledes.innerHTML = "&nbsp;" + text.slice(
-                    0,
-                    mobilecharIndex--
-                );
-            }
-            // 把star更新为当前时间，进行下一个周期
-            mobilestart = time;
-
-            // 如果文字已经全部打印完毕
-            if (mobilecharIndex === text.length) {
-                // 下次开始删除文字
-                mobileisDeleting = true;
-                // 删除文字的间隔为200毫秒
-                mobiledelta = 100;
-                // 额外等待1.2秒后再删除
-                mobilestart = time + 1000;
-            }
-
-            // 如果文字删除完毕
-            if (mobilecharIndex < 0) {
-                mobileisDeleting = false;
-                // 额外增加200毫秒延迟
-                mobilestart = time + 200;
-            }
-        }
-    }
-
-    window.requestAnimationFrame(mobileLoadDes);
-</script>
-                        <img src="" alt="" class="plbg">
-<script>
-    var bgchoice = "link";
-    if(bgchoice=='default')
-        var plbgurl = "/media/images/custom-mobileplbgimage.jpg"
-    else  
-        var plbgurl = "https://github.com/Elex722/PicGo/blob/master/images/custom-mobileplbgimage.jpg?raw=true"
-    $(".plbg").attr("src",plbgurl);
-    $(".plbg").fadeIn(200);
-</script>
+                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
+                
+                <div>
+                    <div id="tab1" class="tab">
+                        <div class="bars">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="close"></div>
                     </div>
-                    <div style="display:none">
-</div>
-                    <link rel="stylesheet" href="https://blog.elex.vip/media/css/font-awesome.css">
-
+                    <div class="col-lg-3"></div>
+                        <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                            <link rel="stylesheet" href="https://blog.elex.vip/media/css/font-awesome.css">
 
     <div style="display: none;">
         
@@ -1142,96 +1048,6 @@ menulist.eq(i).show();
             
                 <span name="pltag" alt="SpringBoot集成Quartz自定义表管理定时器">Java</span>
                 <span name="pltaglink" alt="SpringBoot集成Quartz自定义表管理定时器">https://blog.elex.vip/tag/GiMI0Yaiw/</span>
-            
-        
-            
-                <span name="plfeature">https://github.com/Elex722/PicGo/blob/master/images/cb8521e33e11bbc0f94ce544954e556e.jpeg?raw=true</span>
-                
-            <span name="pltitle">java面试题之HashMap常见面试题总结</span>
-            <span name="pllink">https://blog.elex.vip/post/java-mian-shi-ti-zhi-hashmap-chang-jian-mian-shi-ti-zong-jie/</span>
-            <span name="pldate">2022-03-23</span>
-            <span name="plstats">8 min read</span>
-            
-                <span name="pltag" alt="java面试题之HashMap常见面试题总结">Java</span>
-                <span name="pltaglink" alt="java面试题之HashMap常见面试题总结">https://blog.elex.vip/tag/GiMI0Yaiw/</span>
-            
-        
-            
-                <span name="plfeature">https://github.com/Elex722/PicGo/blob/master/images/41933a5887806b3479a690748e2a7650.jpeg?raw=true</span>
-                
-            <span name="pltitle">BigDecimal Postman 返回正常精度前端接收不正常（前后端交互丢失精度）</span>
-            <span name="pllink">https://blog.elex.vip/post/bigdecimal-postman-fan-hui-zheng-chang-jing-du-qian-duan-jie-shou-bu-zheng-chang-qian-hou-duan-jiao-hu-diu-shi-jing-du/</span>
-            <span name="pldate">2022-03-23</span>
-            <span name="plstats">1 min read</span>
-            
-                <span name="pltag" alt="BigDecimal Postman 返回正常精度前端接收不正常（前后端交互丢失精度）">Java</span>
-                <span name="pltaglink" alt="BigDecimal Postman 返回正常精度前端接收不正常（前后端交互丢失精度）">https://blog.elex.vip/tag/GiMI0Yaiw/</span>
-            
-        
-            
-                <span name="plfeature">https://github.com/Elex722/PicGo/blob/master/images/4df335953983f0d58a25320b38e0a945.jpeg?raw=true</span>
-                
-            <span name="pltitle">Java-Poi 指定列单元格式</span>
-            <span name="pllink">https://blog.elex.vip/post/java-poi-zhi-ding-lie-dan-yuan-ge-shi/</span>
-            <span name="pldate">2022-03-23</span>
-            <span name="plstats">1 min read</span>
-            
-                <span name="pltag" alt="Java-Poi 指定列单元格式">Poi</span>
-                <span name="pltaglink" alt="Java-Poi 指定列单元格式">https://blog.elex.vip/tag/Xt1qubIvr/</span>
-            
-                <span name="pltag" alt="Java-Poi 指定列单元格式">Excel</span>
-                <span name="pltaglink" alt="Java-Poi 指定列单元格式">https://blog.elex.vip/tag/rWRbRRI8_/</span>
-            
-                <span name="pltag" alt="Java-Poi 指定列单元格式">Java</span>
-                <span name="pltaglink" alt="Java-Poi 指定列单元格式">https://blog.elex.vip/tag/GiMI0Yaiw/</span>
-            
-        
-            
-                <span name="plfeature">https://github.com/Elex722/PicGo/blob/master/images/7b8eb9e2f048ce7f9d0e557eb3689171.jpeg?raw=true</span>
-                
-            <span name="pltitle">Sql Server + Mybatis-plus使用Page时报错</span>
-            <span name="pllink">https://blog.elex.vip/post/sql-server-mybatis-plus-shi-yong-page-shi-bao-cuo/</span>
-            <span name="pldate">2022-03-23</span>
-            <span name="plstats">3 min read</span>
-            
-                <span name="pltag" alt="Sql Server + Mybatis-plus使用Page时报错">SQL Server</span>
-                <span name="pltaglink" alt="Sql Server + Mybatis-plus使用Page时报错">https://blog.elex.vip/tag/cdsvpMQ5g/</span>
-            
-                <span name="pltag" alt="Sql Server + Mybatis-plus使用Page时报错">MyBatis Plus</span>
-                <span name="pltaglink" alt="Sql Server + Mybatis-plus使用Page时报错">https://blog.elex.vip/tag/GGVePpshN/</span>
-            
-                <span name="pltag" alt="Sql Server + Mybatis-plus使用Page时报错">Java</span>
-                <span name="pltaglink" alt="Sql Server + Mybatis-plus使用Page时报错">https://blog.elex.vip/tag/GiMI0Yaiw/</span>
-            
-        
-            
-                <span name="plfeature">https://github.com/Elex722/PicGo/blob/master/images/86f4f6ab4a8b8d77125854648e6fb2a1.jpeg?raw=true</span>
-                
-            <span name="pltitle">一个对象中有很多属性，假如有个属性不想在日志中打印，其他属性都打印</span>
-            <span name="pllink">https://blog.elex.vip/post/yi-ge-dui-xiang-zhong-you-hen-duo-shu-xing-jia-ru-you-ge-shu-xing-bu-xiang-zai-ri-zhi-zhong-da-yin-qi-ta-shu-xing-du-da-yin/</span>
-            <span name="pldate">2022-03-23</span>
-            <span name="plstats">3 min read</span>
-            
-                <span name="pltag" alt="一个对象中有很多属性，假如有个属性不想在日志中打印，其他属性都打印">Java</span>
-                <span name="pltaglink" alt="一个对象中有很多属性，假如有个属性不想在日志中打印，其他属性都打印">https://blog.elex.vip/tag/GiMI0Yaiw/</span>
-            
-        
-            
-                <span name="plfeature">https://github.com/Elex722/PicGo/blob/master/images/5c23d52f880511ebb6edd017c2d2eca2.jpeg?raw=true</span>
-                
-            <span name="pltitle">docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合</span>
-            <span name="pllink">https://blog.elex.vip/post/docker-an-zhuang-jenkins-zi-dong-bu-shu-springboot-xiang-mu-ji-suo-yu-dao-de-wen-ti-ji-he/</span>
-            <span name="pldate">2022-03-22</span>
-            <span name="plstats">4 min read</span>
-            
-                <span name="pltag" alt="docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合">Docker</span>
-                <span name="pltaglink" alt="docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合">https://blog.elex.vip/tag/2X0VTsV19/</span>
-            
-                <span name="pltag" alt="docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合">Linux</span>
-                <span name="pltaglink" alt="docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合">https://blog.elex.vip/tag/JoPaXmGxm/</span>
-            
-                <span name="pltag" alt="docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合">Jenkins</span>
-                <span name="pltaglink" alt="docker 安装Jenkins自动部署SpringBoot项目及所遇到的问题集合">https://blog.elex.vip/tag/WUrdyTfMt/</span>
             
         
     </div>
@@ -1257,9 +1073,9 @@ menulist.eq(i).show();
                         </div>
                     </div>
                     <div class='eleg-tags'>
-                        <div v-for="(tag,i) in post.tags">
+                        <div v-for="tag in post.tags">
                             <div class="posttag">
-                                <a data-pjax :href="post.taglink[i]" class="postlink eleg-postlink">
+                                <a data-pjax href="" class="postlink eleg-postlink">
                                     <i class="fa fa-tag"></i>{{tag}}
                                 </a>
                             </div>
@@ -1284,9 +1100,9 @@ menulist.eq(i).show();
                         <img :src="post.feature" alt="" :class="post.imgclass">
                     </div>
                     <div class='eleg-tags'>
-                        <div v-for="(tag,i) in post.tags">
+                        <div v-for="tag in post.tags">
                             <div class="posttag">
-                                <a data-pjax :href="post.taglink[i]" class="postlink eleg-postlink">
+                                <a data-pjax href="" class="postlink eleg-postlink">
                                     <i class="fa fa-tag"></i>{{tag}}
                                 </a>
                             </div>
@@ -1311,11 +1127,9 @@ menulist.eq(i).show();
              var pldlist = $("span[name='pldate']");
              var plslist = $("span[name='plstats']");
              var pltaglist = $("span[name='pltag']");
-             var pltaglinklist = $("span[name='pltaglink']")
              for(var i=0;i<this.pagesize&&i<plflist.length;i++){
                  var d = {};
                  var tags = []
-                 var taglink = []
                  d["feature"] = plflist.eq(i).html();
                  d["title"] = pltlist.eq(i).html();
                  d["link"] = plllist.eq(i).html();
@@ -1326,11 +1140,6 @@ menulist.eq(i).show();
                         tags.push(pltaglist.eq(j).html())
                  }
                  d["tags"] = tags;
-                 for(var j=0;j<pltaglinklist.length;j++){
-                    if(pltaglinklist.eq(j).attr('alt')==d['title'])
-                        taglink.push(pltaglinklist.eq(j).html())
-                 }
-                 d["taglink"] = taglink
                  if(i%2==0)
                  {
                      d['elegcontainer'] = 'eleg-postcontainer-left';
@@ -1351,9 +1160,8 @@ menulist.eq(i).show();
     })
     </script>
 
-
-                    <div>
-                        <div class="pcpagi">
+                            <div>
+                                <div class="pcpagi">
     <div class="pagi">
         <ul>
             
@@ -1403,32 +1211,19 @@ menulist.eq(i).show();
         page2.innerHTML = nextnum - 1;
     }
 </script>
-                    </div>
+                                <div style="padding-bottom:10%"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2"></div>
                 </div>
-                <div class="col-md-1 col-lg-2"></div>
-                
                 <!-- ----------------左侧菜单栏html 👆-------------------------------------->
+                
                 <!------------------ 顶部菜单栏html👇--------->
-                 
+                
                 <!------------------ 顶部菜单栏html👆--------->
-                </div>
-            </div>
-            <div id="bg">
-            </div>
-            <!------- 背景图加载方式👇----- -->
-            <div id="bgchoice" style="display: none">link
             </div>
             
-            <div id="bgurl" style="display:none">https://github.com/Elex722/PicGo/blob/master/images/custom-bgimage.png?raw=true</div>
-            
-            <!------- 背景图加载方式👆----- --> 
-        <div id="landlord">
-            <div class="message" style="opacity:0"></div>
-            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-        </div>
-    </div>
-        
-            <head>
+                        <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 </head>
 
@@ -1490,23 +1285,42 @@ menulist.eq(i).show();
         }
     }
 </script>
-        
-    <div id="domainname" style="display:none">https://blog.elex.vip
+            
         </div>
+        <div id="bg">
+        </div>
+        <!------- 背景图加载方式👇----- -->
+        <div id="bgchoice" style="display: none">link
+                    </div>
+                    
+                    <div id="bgurl" style="display:none">https://github.com/Elex722/PicGo/blob/master/images/custom-bgimage.png?raw=true</div>
+                       
+        </div>
+        <!------- 背景图加载方式👆 --------------->
+</div>
+</div>
 
+        <div id="landlord">
+            <div class="message" style="opacity:0"></div>
+            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+        </div>
+        <div id="domainname" style="display:none">https://blog.elex.vip
+                </div>
+</body>
+</html>
 <!-------------------- live2d功能👇 --------------------------->
-    
-        <script type="text/javascript">
-            var message_Path = '/live2d/'
-            var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
-        </script>
-        <script type="text/javascript" src="https://blog.elex.vip/media/js/live2d.js"></script>
-        <script type="text/javascript" src="https://blog.elex.vip/media/live2d/js/message.js"></script>
-        <script type="text/javascript">
-            loadlive2d("live2d", "https://blog.elex.vip/media/live2d/assets/tororo.model.json");
-        </script>
-    
-<!-------------------- live2d功能👆 --------------------------->
+
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://blog.elex.vip/media/js/live2d.js"></script>
+<script type="text/javascript" src="https://blog.elex.vip/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://blog.elex.vip/media/live2d/assets/tororo.model.json");
+</script>
+
+<!-------------------- live2d功能👆--------------------------->
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
@@ -1527,9 +1341,5 @@ menulist.eq(i).show();
 </script>
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
-        <script src="https://blog.elex.vip/media/js/index.js"></script>
-        
-</body>
-</html>
+<script src="https://blog.elex.vip/media/js/index.js"></script>
